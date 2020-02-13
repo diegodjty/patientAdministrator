@@ -1,8 +1,12 @@
-import React,{Fragment} from 'react';
+import React,{Fragment, useState} from 'react';
 import Form from './components/Form'
 
 
 function App() {
+
+
+  
+
   return (
     <Fragment>
       <h1>Patient Administrator</h1>
