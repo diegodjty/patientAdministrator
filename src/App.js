@@ -16,6 +16,13 @@ function App() {
     ])
   }
 
+  // Function that deletes appointment by ID
+
+  const deleteAppt = id => {
+    const newAppt = appointments.filter(appointment => appointment.id !== id);
+    handelAppt(newAppt)
+  }
+
   return (
     <Fragment>
       <h1>Patient Administrator</h1>
@@ -33,6 +40,7 @@ function App() {
                 <Appointment
                   key={appointment.id}
                   appointment={appointment}
+                  deleteAppt={deleteAppt}
                 />
               ))}
           </div>
