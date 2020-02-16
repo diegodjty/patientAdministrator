@@ -15,6 +15,8 @@ const Form = () => {
 
     });
 
+    const [error, handelError] = useState(false)
+
     const handelChange = e => {
         updateAppointment({
             ...appointment,
@@ -22,12 +24,37 @@ const Form = () => {
         })   
     }
 
+    //extract values
     const {pet,owner,date,time,symptoms} = appointment
+    
+    // When user press add Appoitment
+    const addAppt = e =>{
+        e.preventDefault();
+
+        // Validate
+        if(pet.trim() === ''|| owner.trim() === ''|| date.trim() === ''|| time.trim() === ''|| symptoms.trim() === ''){
+            handelError(true)
+            return;
+        }
+
+        // Assign ID
+
+        // Create appoitment
+
+        // Reset Form
+        
+    }
 
     return ( 
         <Fragment >
-            <h1>From form</h1>
-            <form action="">
+            <h1>Create Appoitment</h1>
+
+            { error ? <p className="alerta-error">All fields are required</p> : null }
+
+            <form 
+
+                onSubmit={addAppt}
+            >
 
                 <label htmlFor="">Pet Name</label>
                 <input 
@@ -77,7 +104,7 @@ const Form = () => {
                 <button
                     type="submit"
                     className="u-full-width button-primary"
-                ></button>
+                >Add Appoitment</button>
             </form>
         </Fragment>
      );
