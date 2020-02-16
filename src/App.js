@@ -1,17 +1,18 @@
 import React,{Fragment,useState} from 'react';
 import Form from './components/Form'
+import Appointment from './components/Appoitment';
 
 
 function App() {
   
   // Appoitment array
-  const [appoitments,handelAppt] = useState([]);
+  const [appointments,handelAppt] = useState([]);
 
   // Function that take actual appoitments and add new ones
-  const createAppt = appoitment =>{
+  const createAppt = appointment =>{
     handelAppt([
-      ...appoitments,
-      appoitment
+      ...appointments,
+      appointment
     ])
   }
 
@@ -27,7 +28,13 @@ function App() {
               />
           </div>
           <div className="one-half column">
-              2
+              <h2>Handel your appointments</h2>
+              {appointments.map(appointment => (
+                <Appointment
+                  key={appointment.id}
+                  appointment={appointment}
+                />
+              ))}
           </div>
         </div>
       </div>

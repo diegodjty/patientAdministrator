@@ -44,7 +44,13 @@ const Form = ({createAppt}) => {
         // Create appoitment
         createAppt(appointment)
         // Reset Form
-        
+        updateAppointment({
+            pet: '',
+            owner: '',
+            date: '',
+            time: '',
+            symptoms: ''
+        })
     }
 
     return ( 
