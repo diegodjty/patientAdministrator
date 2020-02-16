@@ -1,6 +1,7 @@
 import React,{Fragment, useState} from 'react';
+import uuid from 'uuid';
 
-const Form = () => {
+const Form = ({createAppt}) => {
 
     //
     
@@ -36,11 +37,12 @@ const Form = () => {
             handelError(true)
             return;
         }
-
+        // Delete error message
+        handelError(false)
         // Assign ID
-
+        appointment.id=uuid();
         // Create appoitment
-
+        createAppt(appointment)
         // Reset Form
         
     }
@@ -105,6 +107,7 @@ const Form = () => {
                     type="submit"
                     className="u-full-width button-primary"
                 >Add Appoitment</button>
+
             </form>
         </Fragment>
      );
