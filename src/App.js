@@ -1,12 +1,27 @@
-import React,{Fragment,useState} from 'react';
+import React,{Fragment,useState,useEffect } from 'react';
 import Form from './components/Form'
 import Appointment from './components/Appoitment';
 
 
 function App() {
-  
+
+  // Appointments in local storage
+  let initialAppt = JSON.parse(localStorage.getItem('appointments'))
+  if(!initialAppt){
+    initialAppt=[];
+  }
   // Appoitment array
-  const [appointments,handelAppt] = useState([]);
+  const [appointments,handelAppt] = useState(initialAppt);
+
+  // UseEffect is for some operations that run when the state changes
+
+  useEffect( () => {
+    if(initialAppt){
+      localStorage.setItem('appointments',JSON.stringify(appointments))
+    }else{
+      localStorage.setItem('appointmens',JSON.stringify([]))
+    }
+  },[appointments]);
 
   // Function that take actual appoitments and add new ones
   const createAppt = appointment =>{
@@ -23,6 +38,9 @@ function App() {
     handelAppt(newAppt)
   }
 
+  // conditional message
+  const title = appointments.length === 0 ? 'No appointments' : 'Handel Appointments' ;
+
   return (
     <Fragment>
       <h1>Patient Administrator</h1>
@@ -35,7 +53,7 @@ function App() {
               />
           </div>
           <div className="one-half column">
-              <h2>Handel your appointments</h2>
+              <h2>{title}</h2>
               {appointments.map(appointment => (
                 <Appointment
                   key={appointment.id}
